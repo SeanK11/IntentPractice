@@ -11,6 +11,8 @@ import android.widget.EditText;
 public class MainActivity extends AppCompatActivity {
     private Button moveToOtherBtn;
     private Button sendMessageBtn;
+    private Button editNicknameBtn;
+    private int REQUEST_FOR_NICKNAME = 1005;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,6 +20,15 @@ public class MainActivity extends AppCompatActivity {
 
         moveToOtherBtn = findViewById(R.id.moveToOtherBtn);
         sendMessageBtn = findViewById(R.id.sendMessageBtn);
+        editNicknameBtn = findViewById(R.id.editNicknameBtn);
+
+        editNicknameBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent myIntent = new Intent(MainActivity.this, EditNicknameActivity.class);
+                startActivityForResult(myIntent, REQUEST_FOR_NICKNAME);
+            }
+        });
 
         sendMessageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
