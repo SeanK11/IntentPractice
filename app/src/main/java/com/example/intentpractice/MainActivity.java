@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     private Button editNicknameBtn;
     private Button dialBtn;
     private Button callBtn;
+    private Button smsBtn;
     private TextView nicknameTxt;
     private int REQUEST_FOR_NICKNAME = 1005;
     @Override
@@ -29,13 +30,28 @@ public class MainActivity extends AppCompatActivity {
         editNicknameBtn = findViewById(R.id.editNicknameBtn);
         dialBtn = findViewById(R.id.dialBtn);
         callBtn = findViewById(R.id.callBtn);
+        smsBtn = findViewById(R.id.smsBtn);
 
+
+
+        // SMS 액션 예제
+        smsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditText phoneNumEdt = findViewById(R.id.phoneNumEdt);
+                String inputPhoneNum = phoneNumEdt.getText().toString();
+                Uri myUri = Uri.parse("smsto:" + inputPhoneNum);
+                Intent myIntent = new Intent(Intent.ACTION_SENDTO, myUri);
+                myIntent.putExtra("sms_body", "미리 내용 입력");
+
+                startActivity(myIntent);
+            }
+        });
 
         // Call 액션 예제
         callBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 EditText phoneNumEdt = findViewById(R.id.phoneNumEdt);
                 String inputPhoneNum = phoneNumEdt.getText().toString();
                 Uri myUri = Uri.parse("tel:" + inputPhoneNum);
