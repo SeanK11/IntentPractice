@@ -18,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
     private Button dialBtn;
     private Button callBtn;
     private Button smsBtn;
+    private Button kakaoStoreBtn;
+    private Button naverWebBtn;
     private TextView nicknameTxt;
     private int REQUEST_FOR_NICKNAME = 1005;
     @Override
@@ -31,8 +33,31 @@ public class MainActivity extends AppCompatActivity {
         dialBtn = findViewById(R.id.dialBtn);
         callBtn = findViewById(R.id.callBtn);
         smsBtn = findViewById(R.id.smsBtn);
+        kakaoStoreBtn = findViewById(R.id.kakaoStoreBtn);
+        naverWebBtn = findViewById(R.id.naverWebBtn);
 
 
+        //kakao Store로 이동
+        kakaoStoreBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri myUri = Uri.parse("market://details?id=com.kakao.talk");
+                Intent myIntent = new Intent(Intent.ACTION_VIEW, myUri);
+
+                startActivity(myIntent);
+            }
+        });
+
+        //naver로 이동
+        naverWebBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri myUri = Uri.parse("https://naver.com");
+                Intent myIntent = new Intent(Intent.ACTION_VIEW, myUri);
+
+                startActivity(myIntent);
+            }
+        });
 
         // SMS 액션 예제
         smsBtn.setOnClickListener(new View.OnClickListener() {
