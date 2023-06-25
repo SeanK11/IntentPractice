@@ -4,6 +4,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
     private Button moveToOtherBtn;
     private Button sendMessageBtn;
     private Button editNicknameBtn;
+    private Button dialBtn;
     private TextView nicknameTxt;
     private int REQUEST_FOR_NICKNAME = 1005;
     @Override
@@ -24,6 +26,22 @@ public class MainActivity extends AppCompatActivity {
         moveToOtherBtn = findViewById(R.id.moveToOtherBtn);
         sendMessageBtn = findViewById(R.id.sendMessageBtn);
         editNicknameBtn = findViewById(R.id.editNicknameBtn);
+        dialBtn = findViewById(R.id.dialBtn);
+
+
+        // DIAL 액션 예제
+        dialBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // phoneNumEdt에 입력한 전화번호를 받아서 => 해당 번호에 전화 연결
+                EditText phoneNumEdt = findViewById(R.id.phoneNumEdt);
+                String inputPhoneNum = phoneNumEdt.getText().toString();
+                Uri myUri = Uri.parse("tel:" + inputPhoneNum);
+                Intent myIntent = new Intent(Intent.ACTION_DIAL, myUri);
+
+                startActivity(myIntent);
+            }
+        });
 
         editNicknameBtn.setOnClickListener(new View.OnClickListener() {
             @Override
