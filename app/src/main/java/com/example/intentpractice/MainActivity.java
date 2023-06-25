@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     private Button sendMessageBtn;
     private Button editNicknameBtn;
     private Button dialBtn;
+    private Button callBtn;
     private TextView nicknameTxt;
     private int REQUEST_FOR_NICKNAME = 1005;
     @Override
@@ -27,7 +28,22 @@ public class MainActivity extends AppCompatActivity {
         sendMessageBtn = findViewById(R.id.sendMessageBtn);
         editNicknameBtn = findViewById(R.id.editNicknameBtn);
         dialBtn = findViewById(R.id.dialBtn);
+        callBtn = findViewById(R.id.callBtn);
 
+
+        // Call 액션 예제
+        callBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                EditText phoneNumEdt = findViewById(R.id.phoneNumEdt);
+                String inputPhoneNum = phoneNumEdt.getText().toString();
+                Uri myUri = Uri.parse("tel:" + inputPhoneNum);
+                Intent myIntent = new Intent(Intent.ACTION_CALL, myUri);
+
+                startActivity(myIntent);
+            }
+        });
 
         // DIAL 액션 예제
         dialBtn.setOnClickListener(new View.OnClickListener() {
